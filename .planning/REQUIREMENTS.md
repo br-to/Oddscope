@@ -75,34 +75,34 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| MKTD-01 | TBD | Pending |
-| MKTD-02 | TBD | Pending |
-| MKTD-03 | TBD | Pending |
-| MKTD-04 | TBD | Pending |
-| MKTD-05 | TBD | Pending |
-| MKTD-06 | TBD | Pending |
-| MKTD-07 | TBD | Pending |
-| ANLY-01 | TBD | Pending |
-| ANLY-02 | TBD | Pending |
-| ANLY-03 | TBD | Pending |
-| ANLY-04 | TBD | Pending |
-| MORN-01 | TBD | Pending |
-| MORN-02 | TBD | Pending |
-| MORN-03 | TBD | Pending |
-| NOTF-01 | TBD | Pending |
-| NOTF-02 | TBD | Pending |
-| NOTF-03 | TBD | Pending |
-| NOTF-04 | TBD | Pending |
-| MONT-01 | TBD | Pending |
-| MONT-02 | TBD | Pending |
-| SHAR-01 | TBD | Pending |
-| SHAR-02 | TBD | Pending |
+| MKTD-01 | Phase 1 | Pending |
+| MKTD-02 | Phase 1 | Pending |
+| MKTD-04 | Phase 1 | Pending |
+| MKTD-03 | Phase 2 | Pending |
+| MKTD-05 | Phase 2 | Pending |
+| MKTD-06 | Phase 2 | Pending |
+| MKTD-07 | Phase 2 | Pending |
+| SHAR-01 | Phase 2 | Pending |
+| SHAR-02 | Phase 2 | Pending |
+| ANLY-01 | Phase 3 | Pending |
+| ANLY-02 | Phase 3 | Pending |
+| ANLY-03 | Phase 3 | Pending |
+| ANLY-04 | Phase 3 | Pending |
+| NOTF-01 | Phase 4 | Pending |
+| NOTF-02 | Phase 4 | Pending |
+| NOTF-03 | Phase 4 | Pending |
+| MORN-01 | Phase 5 | Pending |
+| MORN-02 | Phase 5 | Pending |
+| MORN-03 | Phase 5 | Pending |
+| NOTF-04 | Phase 5 | Pending |
+| MONT-01 | Phase 6 | Pending |
+| MONT-02 | Phase 6 | Pending |
 
 **Coverage:**
 - v1 requirements: 22 total
-- Mapped to phases: 0
-- Unmapped: 22
+- Mapped to phases: 22
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-20*
-*Last updated: 2026-03-20 after initial definition*
+*Last updated: 2026-03-20 after roadmap creation*
