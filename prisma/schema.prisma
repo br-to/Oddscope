@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Market {
+  id              String   @id @default(cuid())
+  polymarketId    String   @unique
+  question        String
+  category        String
+  titleJa         String?
+  contextNote     String?
+  theme           String?
+  currentPrice    Float
+  volume24h       Float
+  change24h       Float
+  isActive        Boolean  @default(true)
+  endDate         DateTime?
+  lastSyncedAt    DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  priceSnapshots  PriceSnapshot[]
+
+  @@index([theme])
+  @@index([volume24h])
+  @@index([change24h])
+  @@index([isActive])
+  @@index([isActive, volume24h])
+}
+
+model PriceSnapshot {
+  id        String   @id @default(cuid())
+  marketId  String
+  market    Market   @relation(fields: [marketId], references: [id], onDelete: Cascade)
+  price     Float
+  volume    Float
+  timestamp DateTime @default(now())
+
+  @@index([marketId, timestamp])
+}
+
+model SyncLog {
+  id          String   @id @default(cuid())
+  startedAt   DateTime @default(now())
+  completedAt DateTime?
+  marketsCount Int?
+  newMarkets   Int?
+  error       String?
+  status      String   @default("running")
+}
