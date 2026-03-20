@@ -50,13 +50,14 @@ Exceptions: none
 | Role | Size | Weight | Line Height |
 |------|------|--------|-------------|
 | Body | 14px | 400 (regular) | 1.5 |
-| Label | 12px | 500 (medium) | 1.4 |
+| Label | 12px | 600 (semibold) | 1.4 |
 | Heading | 20px | 600 (semibold) | 1.2 |
 | Display | 28px | 600 (semibold) | 1.2 |
 
 **Rationale**:
 - Body 14pxは情報密度を高めつつ読みやすさを維持（テーブル表示に最適）
 - ウェイトは2種類のみ（regular 400 / semibold 600）でシンプルに統一
+- Labelも600を使用して視覚的な階層を明確化
 - Line height 1.5で可読性を確保
 
 ---
