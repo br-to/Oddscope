@@ -5,20 +5,28 @@ const POLYMARKET_HOST = 'https://clob.polymarket.com';
 const MIN_VOLUME_USD = 1000; // $1K minimum
 
 function createClient(): ClobClient {
-  return new ClobClient({
-    host: POLYMARKET_HOST,
-    key: process.env.POLYMARKET_API_KEY,
-  });
+  // ClobClient(host, chainId, signer?, creds?, ...)
+  // 読み取り専用の場合、signerとcredsは不要
+  return new ClobClient(
+    POLYMARKET_HOST,
+    137 // Polygon mainnet
+  );
 }
 
 export async function fetchActiveMarkets(): Promise<PolymarketRawMarket[]> {
   const client = createClient();
 
-  const markets = await client.getMarkets({ active: true });
+  // getMarketsはPaginationPayloadを返す（marketsプロパティに配列が入る）
+  const response = await client.getMarkets();
+  const markets = (response as any).data ?? [];
 
-  // 出来高$1K以上のアクティブ市場をフィルタ
+  // アクティブかつ出来高$1K以上の市場をフィルタ
   return markets
-    .filter((m: any) => (m.volumeNum ?? m.volume ?? 0) >= MIN_VOLUME_USD)
+    .filter((m: any) => {
+      const isActive = m.active ?? true;
+      const volume = m.volumeNum ?? m.volume ?? 0;
+      return isActive && volume >= MIN_VOLUME_USD;
+    })
     .map((m: any) => ({
       id: m.condition_id ?? m.id,
       question: m.question ?? '',
