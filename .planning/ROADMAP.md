@@ -28,7 +28,12 @@
   3. 曖昧な市場・米政治/規制ネタに文脈補足が表示され、日本人が「それ何?」とならない
   4. カテゴリ・出来高・変動率でフィルタリング・ソートができる
 
-**Plans**: TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — プロジェクトスキャフォールディング + DB + 型定義 + テスト基盤
+- [ ] 01-02-PLAN.md — データ同期パイプライン（翻訳・テーマ分類・Cron Job）
+- [ ] 01-03-PLAN.md — 市場一覧UI（テーブル・フィルタ・レスポンシブ）
 
 ---
 
@@ -124,7 +129,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. データ基盤・基本表示 | 0/TBD | Not started | - |
+| 1. データ基盤・基本表示 | 0/3 | Planned | - |
 | 2. テーマ整理・ノイズ抑制 | 0/TBD | Not started | - |
 | 3. 急変検知・分析 | 0/TBD | Not started | - |
 | 4. Discord通知 | 0/TBD | Not started | - |
@@ -173,11 +178,9 @@ Phase 6 (収益化) ← Phase 1-5の価値実証が前提
 
 ## Next Steps
 
-1. ロードマップ承認
-2. Phase 1の計画作成: `/gsd:plan-phase 1`
-3. Phase 1の実装開始
+1. Phase 1の実装開始: `/gsd:execute-phase 1`
 
 ---
 
 *Last updated: 2026-03-20*
-*Coverage: 22/22 v1 requirements mapped ✓*
+*Coverage: 22/22 v1 requirements mapped*
