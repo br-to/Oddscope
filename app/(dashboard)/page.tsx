@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getFilteredMarkets } from '@/lib/queries';
 import { MarketTable } from '@/components/market-table';
 import { MarketFilters } from '@/components/market-filters';
