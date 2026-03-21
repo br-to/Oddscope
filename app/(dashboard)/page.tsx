@@ -1,42 +1,60 @@
-export const dynamic = 'force-dynamic';
-
-import { getFilteredMarkets } from '@/lib/queries';
-import { MarketTable } from '@/components/market-table';
+import { getMarkets } from '@/lib/markets';
+import { MarketGrid } from '@/components/market-grid';
 import { MarketFilters } from '@/components/market-filters';
-import type { Theme } from '@/lib/types';
+import { SearchCommand } from '@/components/search-command';
+import type { Theme, Venue } from '@/lib/types';
+import { Suspense } from 'react';
 
 interface SearchParams {
+  q?: string;
   theme?: Theme;
-  minVolume?: string;
-  sortBy?: 'volume' | 'change' | 'time';
-  showSpikeOnly?: string;
+  venue?: Venue;
+  sortBy?: 'volume' | 'change' | 'liquidity';
 }
 
 export default async function DashboardPage({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 }) {
-  const params = {
-    theme: searchParams.theme,
-    minVolume: searchParams.minVolume
-      ? parseFloat(searchParams.minVolume)
-      : undefined,
-    sortBy: searchParams.sortBy || 'volume',
-    showSpikeOnly: searchParams.showSpikeOnly === 'true',
-  };
+  const sp = await searchParams;
+  const markets = await getMarkets({
+    q: sp.q,
+    theme: sp.theme,
+    venue: sp.venue,
+    sortBy: sp.sortBy || 'volume',
+  });
 
-  const markets = await getFilteredMarkets(params);
+  const polyCount = markets.filter((m) => m.venue === 'polymarket').length;
+  const kalshiCount = markets.filter((m) => m.venue === 'kalshi').length;
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      <h1 className="text-[28px] font-semibold leading-tight mb-8">
-        予測市場一覧
-      </h1>
-      <MarketFilters />
-      <div className="mt-8">
-        <MarketTable markets={markets} />
+    <>
+      {/* ヘッダー: タイトル + 検索 */}
+      <div className="flex flex-col gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Oddscope</h1>
+            <p className="text-sm text-gray-500 mt-1">
+              {markets.length} markets
+              <span className="mx-1.5 text-gray-300">|</span>
+              Polymarket {polyCount}
+              <span className="mx-1.5 text-gray-300">|</span>
+              Kalshi {kalshiCount}
+            </p>
+          </div>
+          <Suspense>
+            <SearchCommand />
+          </Suspense>
+        </div>
+
+        {/* フィルタ */}
+        <Suspense>
+          <MarketFilters />
+        </Suspense>
       </div>
-    </div>
+
+      <MarketGrid markets={markets} />
+    </>
   );
 }

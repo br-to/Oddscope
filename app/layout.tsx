@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Oddscope - 予測市場ダッシュボード",
-  description: "Polymarket予測市場の最新情報を日本語で瞬時に把握",
+  title: "Oddscope - 予測市場データインフラ",
+  description: "Polymarket + Kalshi の予測市場データをリアルタイムで統合。日本語対応。",
 };
 
 export default function RootLayout({

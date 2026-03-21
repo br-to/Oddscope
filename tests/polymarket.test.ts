@@ -1,12 +1,13 @@
-import { describe, it, expect, vi } from 'vitest';
-import { MIN_VOLUME_USD, POLYMARKET_HOST } from '@/lib/polymarket';
+import { describe, it, expect } from 'vitest';
 
-describe('Polymarket client', () => {
-  it('defines correct API host', () => {
-    expect(POLYMARKET_HOST).toBe('https://clob.polymarket.com');
-  });
-
-  it('defines minimum volume threshold at $1000', () => {
-    expect(MIN_VOLUME_USD).toBe(1000);
+describe('Polymarket adapter', () => {
+  it('Gamma API returns market data', async () => {
+    const res = await fetch('https://gamma-api.polymarket.com/markets?limit=1&active=true&closed=false');
+    expect(res.ok).toBe(true);
+    const data = await res.json();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data.length).toBeGreaterThan(0);
+    expect(data[0]).toHaveProperty('question');
+    expect(data[0]).toHaveProperty('volume24hr');
   });
 });
